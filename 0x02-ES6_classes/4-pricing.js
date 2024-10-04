@@ -35,6 +35,12 @@ export default class Pricing {
   }
 
   static convertPrice(amount, conversionRate) {
-    return amount * conversionRate;
+    if (typeof amount === 'number' && typeof conversionRate === 'number') {
+      return amount * conversionRate;
+    }
+    throw new TypeError('Both amount and conversion rate should be numbers');
   }
 }
+
+const output = Pricing.convertPrice(3, '4i');
+console.log(output);
