@@ -6,7 +6,7 @@ export default class Pricing {
     this.currency = currency;
   }
 
-  set amount(newAmount) {
+  set amount (newAmount) {
     if (typeof newAmount === 'number') {
       this._amount = newAmount;
     } else {
@@ -14,7 +14,7 @@ export default class Pricing {
     }
   }
 
-  set currency(newCurrency) {
+  set currency (newCurrency) {
     if (newCurrency instanceof Currency) {
       this._currency = newCurrency;
     } else {
@@ -22,25 +22,22 @@ export default class Pricing {
     }
   }
 
-  get amount() {
+  get amount () {
     return this.amount;
   }
 
-  get currency() {
+  get currency () {
     return this.currency;
   }
 
-  displayFullPrice() {
+  displayFullPrice () {
     return `${this._amount} ${(this._currency).displayFullCurrency()}`;
   }
 
-  static convertPrice(amount, conversionRate) {
-    if (typeof amount === 'number' && typeof conversionRate === 'number') {
+  static convertPrice (amount, conversionRate) {
+    if (typeof amount === 'number' || typeof conversionRate === 'number') {
       return amount * conversionRate;
     }
     throw new TypeError('Both amount and conversion rate should be numbers');
   }
 }
-
-const output = Pricing.convertPrice(3, '4i');
-console.log(output);
